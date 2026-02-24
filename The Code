@@ -1,0 +1,28 @@
+#FINAL Code week 8 assessment
+
+from machine import Pin, PWM
+import time
+
+servo1 = PWM(Pin(22))
+servo1.freq(50)
+servo2 = PWM(Pin(26))
+servo2.freq(50)
+button1 = Pin(18,Pin.IN,Pin.PULL_UP)
+button2 = Pin(33,Pin.IN,Pin.PULL_UP)
+while True:
+    value1 = button1.value()
+    value2 = button2.value()
+    
+    #attack
+    if value1 == 0 :
+        servo2.duty(90)
+        time.sleep(0.1)
+        servo2.duty(45)
+       
+        
+    #defence   
+    if value2 == 0 :
+        servo1.duty(45)
+        time.sleep(0.1)
+        servo1.duty(90)
+    time.sleep(0.2)
